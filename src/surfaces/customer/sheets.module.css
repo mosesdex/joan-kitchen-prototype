@@ -1,0 +1,418 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--scrim);
+  backdrop-filter: blur(3px);
+}
+
+/* ============ item sheet ============ */
+
+/*
+ * The panel is centred by the wrapper's grid, never by a transform of its own —
+ * a hand-rolled translate(-50%) fights whatever transform the animation is
+ * driving and leaves the panel stranded mid-tween.
+ */
+.sheetWrap {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--space-6);
+  pointer-events: none;
+}
+
+.sheet {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: min(88vh, 860px);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.sheetHero {
+  position: relative;
+  height: 224px;
+  flex-shrink: 0;
+  container-type: inline-size;
+}
+
+.sheetHeroImg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.sheetHeroVeil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(18, 16, 14, 0.28) 0%, rgba(18, 16, 14, 0.05) 40%, var(--surface-1) 100%);
+}
+
+.sheetClose {
+  position: absolute;
+  z-index: 3;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(12, 10, 9, 0.62);
+  backdrop-filter: blur(6px);
+  color: #FAF7F2;
+}
+
+.sheetClose:hover {
+  background: rgba(12, 10, 9, 0.82);
+}
+
+.sheetBadges {
+  position: absolute;
+  z-index: 3;
+  top: var(--space-4);
+  left: var(--space-4);
+  display: flex;
+  gap: 6px;
+}
+
+.sheetScroll {
+  overflow-y: auto;
+  padding: 0 var(--space-6) var(--space-6);
+  flex: 1;
+}
+
+/*
+ * The heading sits inside the scrolling area, so it cannot use a negative
+ * margin to overlap the hero — the scroll container clips anything above its
+ * top edge, which silently swallowed the dish name.
+ */
+.sheetHead {
+  padding-top: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.sheetTitle {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-2);
+}
+
+.sheetMetaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sheetDesc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.group {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-5);
+}
+
+.groupHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.groupName {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.groupRule {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
+
+.groupRequired {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--space-2);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 50px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  text-align: left;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--border-strong);
+}
+
+.optionOn {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+}
+
+.option:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.optionMark {
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  color: var(--on-accent);
+  flex-shrink: 0;
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.optionMarkSquare {
+  border-radius: var(--radius-sm);
+}
+
+.optionOn .optionMark {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.optionName {
+  flex: 1;
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.optionPrice {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.optionUnavailable {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
+
+.sheetFooter {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.footerPrice {
+  margin-left: auto;
+  text-align: right;
+}
+
+.footerPriceLabel {
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+}
+
+.footerPriceValue {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ cart drawer ============ */
+
+.drawer {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(444px, 100vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-1);
+  border-left: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.drawerHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.drawerTitle {
+  font-size: var(--text-lg);
+  flex: 1;
+}
+
+.drawerScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-5);
+}
+
+.line {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.line:last-child {
+  border-bottom: none;
+}
+
+.lineImage {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+  container-type: inline-size;
+}
+
+.lineBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.lineTop {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.lineName {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  flex: 1;
+}
+
+.linePrice {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.lineOptions {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+.lineNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: var(--text-xs);
+  color: var(--warning-text);
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
+.lineActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.lineRemove {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.lineRemove:hover {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+.drawerFooter {
+  flex-shrink: 0;
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.totals {
+  display: grid;
+  gap: 7px;
+  margin-bottom: var(--space-4);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.totalRowGrand {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.noteField {
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .sheetWrap {
+    padding: 0;
+  }
+  .sheet {
+    width: 100vw;
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
+  }
+}

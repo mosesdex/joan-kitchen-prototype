@@ -1,0 +1,194 @@
+/*
+ * Joan Kitchen design tokens — "Suya char"
+ *
+ * Two themes share one accent family:
+ *   [data-theme="dark"]  customer iPad + kitchen display
+ *   [data-theme="light"] admin dashboard
+ * Every surface, text and border colour is a token. Never hardcode a hex in a component.
+ */
+
+:root {
+  /* ---- brand accents (identical in both themes) ---- */
+  --amber-900: #412402;
+  --amber-700: #85500B;
+  --amber-600: #BA7517;
+  --amber-500: #E8A33D;
+  --amber-400: #F0B357;
+  --amber-300: #F6CE92;
+  --amber-100: #FAEEDA;
+
+  --clay-700: #7A3421;
+  --clay-600: #A2452D;
+  --clay-500: #C1573A;
+  --clay-400: #D3775C;
+  --clay-100: #F7E4DD;
+
+  --green-600: #3C7B48;
+  --green-500: #4E9F5B;
+  --green-400: #6FBB7B;
+  --green-100: #E2F2E4;
+
+  --gold-600: #A87B14;
+  --gold-500: #D9A22B;
+  --gold-100: #FAF0D6;
+
+  --red-600: #9A362E;
+  --red-500: #C0453B;
+  --red-400: #D6685F;
+  --red-100: #F9E3E1;
+
+  --blue-500: #4A7FB5;
+  --blue-100: #E3EDF7;
+
+  /* ---- typography ---- */
+  --font-display: 'Clash Display', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 44px;
+
+  /* ---- spacing (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- radii ---- */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* ---- motion ---- */
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --dur-slow: 320ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---- elevation ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 20px 56px rgba(0, 0, 0, 0.44);
+
+  /* ---- layout ---- */
+  --tap: 44px;
+}
+
+/* ---------- dark theme: customer + kitchen ---------- */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --surface-0: #12100E;
+  --surface-1: #1C1917;
+  --surface-2: #232020;
+  --surface-3: #292524;
+  --surface-4: #332E2C;
+  --surface-inset: #0C0A09;
+
+  --border: #332E2C;
+  --border-strong: #443E3B;
+  --border-accent: var(--amber-600);
+
+  --text-primary: #FAF7F2;
+  --text-secondary: #A8A29E;
+  --text-muted: #78716C;
+  --text-inverse: #12100E;
+
+  --accent: var(--amber-500);
+  --accent-hover: var(--amber-400);
+  --accent-bg: rgba(232, 163, 61, 0.14);
+  --accent-text: var(--amber-400);
+  --on-accent: #1A1207;
+
+  --secondary: var(--clay-500);
+  --secondary-bg: rgba(193, 87, 58, 0.16);
+  --secondary-text: var(--clay-400);
+
+  --success: var(--green-500);
+  --success-bg: rgba(78, 159, 91, 0.16);
+  --success-text: var(--green-400);
+
+  --warning: var(--gold-500);
+  --warning-bg: rgba(217, 162, 43, 0.16);
+  --warning-text: var(--gold-500);
+
+  --danger: var(--red-500);
+  --danger-bg: rgba(192, 69, 59, 0.16);
+  --danger-text: var(--red-400);
+
+  --info: var(--blue-500);
+  --info-bg: rgba(74, 127, 181, 0.16);
+  --info-text: #8AB4DC;
+
+  --skeleton: linear-gradient(90deg, #232020 0%, #2E2A28 50%, #232020 100%);
+  --scrim: rgba(8, 6, 5, 0.72);
+}
+
+/* ---------- light theme: admin ---------- */
+[data-theme='light'] {
+  color-scheme: light;
+
+  --surface-0: #FAF8F5;
+  --surface-1: #FFFFFF;
+  --surface-2: #FFFFFF;
+  --surface-3: #F4F1EC;
+  --surface-4: #EDE9E2;
+  --surface-inset: #F0EDE7;
+
+  --border: #E7E2DA;
+  --border-strong: #D6D0C5;
+  --border-accent: var(--amber-500);
+
+  --text-primary: #1C1917;
+  --text-secondary: #6B635C;
+  --text-muted: #948D85;
+  --text-inverse: #FFFFFF;
+
+  --accent: var(--amber-600);
+  --accent-hover: var(--amber-700);
+  --accent-bg: var(--amber-100);
+  --accent-text: var(--amber-700);
+  --on-accent: #FFFFFF;
+
+  --secondary: var(--clay-600);
+  --secondary-bg: var(--clay-100);
+  --secondary-text: var(--clay-700);
+
+  --success: var(--green-600);
+  --success-bg: var(--green-100);
+  --success-text: #2C5C35;
+
+  --warning: var(--gold-600);
+  --warning-bg: var(--gold-100);
+  --warning-text: #7A5809;
+
+  --danger: var(--red-600);
+  --danger-bg: var(--red-100);
+  --danger-text: #7C2A24;
+
+  --info: var(--blue-500);
+  --info-bg: var(--blue-100);
+  --info-text: #2C5480;
+
+  --skeleton: linear-gradient(90deg, #EFEBE4 0%, #F7F4EF 50%, #EFEBE4 100%);
+  --scrim: rgba(28, 25, 23, 0.44);
+
+  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06);
+  --shadow-md: 0 4px 16px rgba(28, 25, 23, 0.08);
+  --shadow-lg: 0 16px 44px rgba(28, 25, 23, 0.12);
+}

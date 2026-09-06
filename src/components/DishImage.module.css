@@ -1,0 +1,72 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--tone-a);
+  isolation: isolate;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+  position: relative;
+  z-index: 1;
+}
+
+.loaded {
+  opacity: 1;
+}
+
+/* Designed placeholder: a warm two-stop wash with a soft radial highlight,
+   so an unloaded tile still looks like part of the menu. */
+.fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 90% at 30% 20%, var(--tone-b) 0%, transparent 60%),
+    linear-gradient(150deg, var(--tone-a) 0%, var(--tone-c) 100%);
+}
+
+.initials {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 12cqw, 40px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.ember {
+  --tone-a: #6B2D18;
+  --tone-b: #A8451F;
+  --tone-c: #341409;
+}
+.clay {
+  --tone-a: #7A3421;
+  --tone-b: #C1573A;
+  --tone-c: #3A1810;
+}
+.palm {
+  --tone-a: #2E4A2A;
+  --tone-b: #4E7A42;
+  --tone-c: #16240F;
+}
+.gold {
+  --tone-a: #8A5F13;
+  --tone-b: #D9A22B;
+  --tone-c: #402C06;
+}
+.char {
+  --tone-a: #33302C;
+  --tone-b: #5A544C;
+  --tone-c: #17150F;
+}
+.cream {
+  --tone-a: #8B7B62;
+  --tone-b: #C4B092;
+  --tone-c: #4A3F30;
+}
