@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, ChefHat, Info, LayoutDashboard, Tablet } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -47,7 +48,11 @@ const STEPS = [
 
 export function DemoHub() {
   useAnnouncePresence('hub')
-  const staff = useStore((state) => state.staff.filter((user) => user.active).slice(0, 3))
+  // Select the stored array, then derive. A selector that filters or slices
+  // returns a new array on every call, which defeats the store's reference
+  // check and spins React into an infinite render loop.
+  const allStaff = useStore((state) => state.staff)
+  const staff = useMemo(() => allStaff.filter((user) => user.active).slice(0, 3), [allStaff])
 
   return (
     <div className={s.page}>

@@ -30,7 +30,7 @@ function ThemeController() {
   return null
 }
 
-function Shell() {
+export function Shell() {
   return (
     <>
       <ThemeController />
